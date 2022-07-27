@@ -25,7 +25,7 @@ import com.example.demo.service.EducacionService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.annotation.Secured;
 
 @RestController
 @RequestMapping("/auth/educaciones")
@@ -44,7 +44,7 @@ public class EducacionController {
 		return new ResponseEntity<List<Educacion>>(list, HttpStatus.OK); 
 	}
 	
-        @PreAuthorize("hasAnyRole('ADMIN')")
+        @Secured("ADMIN")
 	@PostMapping("/crear")
 	public ResponseEntity<Mensaje> createEntity(@RequestParam("entidad") String entidad, @RequestParam("nombreUs") String nombreUs) throws JsonMappingException, JsonProcessingException{
 		Educacion educacion = new ObjectMapper().readValue(entidad, Educacion.class);
@@ -61,7 +61,7 @@ public class EducacionController {
 		}
 	}
 	
-        @PreAuthorize("hasAnyRole('ADMIN')")
+        @Secured("ADMIN")
 	@PutMapping("/editar/{id}")
 	public ResponseEntity<?> updateEntity(@PathVariable("id") int id, @RequestParam("entidad") String entidad) throws JsonMappingException, JsonProcessingException,  IOException{
 		
@@ -85,7 +85,7 @@ public class EducacionController {
 		
 	}
 	
-        @PreAuthorize("hasAnyRole('ADMIN')")
+        @Secured("ADMIN")
 	@DeleteMapping("/eliminar/{id}")
 	public ResponseEntity<?> eliminar(@PathVariable("id") int id){
 		if(!educacionService.existsById(id)) 

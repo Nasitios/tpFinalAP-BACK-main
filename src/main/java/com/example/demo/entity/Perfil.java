@@ -26,6 +26,9 @@ public class Perfil implements Serializable {
     private String titulo;
     private String ubicacion;
     private String email;
+    private String github;
+    private String linkedin;
+    private String instagram;
     
     private byte[] imagenPer;
     private String imgPerfil;
@@ -40,13 +43,16 @@ public class Perfil implements Serializable {
 	public Perfil() {
 	}
 
-	public Perfil(int id, String nombre, String titulo, String ubicacion, String email, byte[] imagenPer,
+	public Perfil(int id, String nombre, String titulo, String ubicacion, String email, String github,String linkedin,String instagram, byte[] imagenPer,
 			String imgPerfil, byte[] imagenPor, String imgPortada) {
 		this.id = id;
 		this.nombre = nombre;
 		this.titulo = titulo;
 		this.ubicacion = ubicacion;
 		this.email = email;
+                this.github = github;
+                this.linkedin = linkedin;
+                this.instagram = instagram;
 		this.imagenPer = imagenPer;
 		this.imgPerfil = imgPerfil;
 		this.imagenPor = imagenPor;
@@ -91,6 +97,27 @@ public class Perfil implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+        public String getGithub() {
+		return github;
+	}
+
+	public void setGithub(String github) {
+		this.github = github;
+	}
+        public String getLinkedin() {
+		return linkedin;
+	}
+
+	public void setLinkedin(String linkedin) {
+		this.linkedin = linkedin;
+	}
+        public String getInstagram() {
+		return instagram;
+	}
+
+	public void setInstagram(String instagram) {
+		this.instagram = instagram;
 	}
 
 	public byte[] getImagenPer() {

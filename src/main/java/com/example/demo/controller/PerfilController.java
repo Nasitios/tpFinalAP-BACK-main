@@ -28,7 +28,7 @@ import com.example.demo.service.PerfilService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.annotation.Secured;
 
 @RestController
 @RequestMapping("/auth/perfiles")
@@ -61,7 +61,7 @@ public class PerfilController {
 		return new ResponseEntity<List<Perfil>>(list, HttpStatus.OK); 
 	}
 	
-        @PreAuthorize("hasAnyRole('ADMIN')")
+        @Secured("ADMIN")
 	@PostMapping("/crear")
 	public ResponseEntity<Mensaje> createEntity(@RequestParam("imagenPortada") MultipartFile imagenPortada ,@RequestParam("imagenPerfil") MultipartFile imagenPerfil ,@RequestParam("entidad") String entidad, @RequestParam("nombreUs") String nombreUs) throws IOException{
 		Perfil perfil = new ObjectMapper().readValue(entidad, Perfil.class);
@@ -83,7 +83,7 @@ public class PerfilController {
 		}
 	}
 	
-        @PreAuthorize("hasAnyRole('ADMIN')")
+        @Secured("ADMIN")
 	@PutMapping("/editar/{id}")
 	public ResponseEntity<?> updateEntity(@PathVariable("id") int id,@RequestParam("imagenPortadaEditada") MultipartFile imagenPortada ,@RequestParam("imagenPerfilEditada") MultipartFile imagenPerfil ,@RequestParam("entidad") String entidad) throws JsonMappingException, JsonProcessingException,  IOException{
 		
@@ -104,6 +104,9 @@ public class PerfilController {
 		perfil.setTitulo(perfilEntidad.getTitulo());
 		perfil.setUbicacion(perfilEntidad.getUbicacion());
 		perfil.setEmail(perfilEntidad.getEmail());
+                perfil.setGithub(perfilEntidad.getGithub());
+                perfil.setLinkedin(perfilEntidad.getLinkedin());
+                perfil.setInstagram(perfilEntidad.getInstagram());
 		perfil.setImagenPer(perfilEntidad.getImagenPer());
 		perfil.setImgPerfil(perfilEntidad.getImgPerfil());
 		perfil.setImagenPor(perfilEntidad.getImagenPor());
@@ -114,7 +117,7 @@ public class PerfilController {
 		
 	}
 	
-        @PreAuthorize("hasAnyRole('ADMIN')")
+        @Secured("ADMIN")
 	@DeleteMapping("/eliminar/{id}")
 	public ResponseEntity<?> eliminar(@PathVariable("id") int id){
 		if(!perfilService.existsById(id)) 
