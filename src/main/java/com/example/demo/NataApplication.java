@@ -16,11 +16,11 @@ public class NataApplication {
 		SpringApplication.run(NataApplication.class, args);
 	}
 
-	//@Bean
-	/*public CorsFilter corsFilter() {
+	@Bean
+	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(Boolean.TRUE);
-		corsConfiguration.setAllowedOrigins(Arrays.asList("https://primerporfolioweb.web.app"));
+		corsConfiguration.setAllowedOrigins(Arrays.asList("https://ap-proyecto-nata.web.app"));
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin","Acces-Control-Allow-Origin","Content-Type","Accept","Authorization","Origin, Accept", "X-Requested-With", "Access-Control-Request-Method", "Access-Control-Request-Headers"));
 		corsConfiguration.setExposedHeaders(Arrays.asList("Origin","Content-Type","Accept","Authorization","Acces-Control-Allow-Origin","Acces-Control-Allow-Credentials"));
 		corsConfiguration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS","HEAD")); 
@@ -29,5 +29,5 @@ public class NataApplication {
 		
 		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
-*/
+
 }
